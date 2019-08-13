@@ -6,6 +6,7 @@ threadwrapper.api
 Class definitions to create wrapper threads for jobs.
 """
 
+import traceback
 import subprocess
 from threading import Thread
 
@@ -74,6 +75,7 @@ class ThreadWrapper(Thread):
         except Exception as e:
             self._state = ThreadState.FAILED
             self._exception = e
+            traceback.print_exc()
 
     @property
     def job(self):
